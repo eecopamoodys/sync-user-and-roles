@@ -4,13 +4,15 @@
   "description": "",
   "main": ".src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync-user-and-roles": "node -r dotenv/config src/index.js --path src/file.csv"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
     "csv-parser": "^3.0.0",
+    "dotenv": "^10.0.0",
     "yargs": "^17.3.0"
   }
 }

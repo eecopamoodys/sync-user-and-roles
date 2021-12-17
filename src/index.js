@@ -6,6 +6,7 @@ const axios = require("axios").default;
 const argv = yargs.argv;
 const filePath = argv.path;
 
+
 const emcInstance = axios.create({
 	baseURL: `${process.env.EMC_DOMAIN_URL}/api/`,
 	headers: {
@@ -43,7 +44,7 @@ const uploadUser = async (data) => {
 
 const createEMCUser = async (user) => {
 	try {
-		await emcInstance.post(`/users`, user);
+		await emcInstance.post(`users`, user);
 	} catch (e) {
 		console.error(e);
 	}
