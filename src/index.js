@@ -15,7 +15,6 @@ const emcInstance = axios.create({
 	},
 });
 
-
 const mapDataToUser = (data) => ({
 	firstName: data["FirstName"],
 	lastName: data["LastName"],
@@ -29,16 +28,14 @@ const uploadUser = async (data) => {
 		const roles = data.RolesIds.split(",");
 
 		const userData = mapDataToUser({ ...data });
-		
-        await createEMCUser(userData);
 
-		const assignRolesToUserResult = (await Promise.allSettled(
+		await createEMCUser(userData);
+
+		await Promise.allSettled(
 			roles.map(async (roleId) => {
 				await assignRoleToUser(userData.email, roleId?.trim());
 			})
-		)).filter(result => result.status != "fulfilled");
-
-        console.dir(assignRolesToUserResult);
+		);
 	} catch (error) {
 		console.error(error);
 	}
