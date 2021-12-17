@@ -19,7 +19,7 @@ const mapDataToUser = (data) => ({
 	firstName: data["FirstName"],
 	lastName: data["LastName"],
 	userName: data["UserName"],
-	email: data["UserName"],
+	email: data["Email"],
 	accountId: data["AccountId"],
 });
 
@@ -33,7 +33,7 @@ const uploadUser = async (data) => {
 
 		await Promise.allSettled(
 			roles.map(async (roleId) => {
-				await assignRoleToUser(userData.email, roleId?.trim());
+				await assignRoleToUser(userData.userName, roleId?.trim());
 			})
 		);
 	} catch (error) {
